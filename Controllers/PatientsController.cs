@@ -123,15 +123,8 @@ namespace APIprojectDoctorPatient.Controllers
         [HttpGet("doctors/specialization/{specialization}")]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctorsBySpecialization(string specialization)
         {
-            if (_context.doctors == null)
-            {
-                return NotFound();
-            }
-
             var doctors = await _context.doctors
                 .Where(d => d.Specialization == specialization)
-                .GroupBy(d => d.Specialization)
-                .Select(g => new { Specialization = g.Key, Doctors = g.ToList() })
                 .ToListAsync();
 
             if (!doctors.Any())
@@ -141,6 +134,7 @@ namespace APIprojectDoctorPatient.Controllers
 
             return Ok(doctors);
         }
+
 
 
         private bool PatientExists(int id)
