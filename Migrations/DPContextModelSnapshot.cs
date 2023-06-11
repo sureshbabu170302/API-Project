@@ -22,6 +22,50 @@ namespace APIprojectDoctorPatient.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("APIprojectDoctorPatient.Models.Admin", b =>
+                {
+                    b.Property<int>("Admin_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Admin_Id"));
+
+                    b.Property<string>("Admin_Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Admin_Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Admin_Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Admin_Id");
+
+                    b.ToTable("Admins");
+                });
+
+            modelBuilder.Entity("APIprojectDoctorPatient.Models.Customer", b =>
+                {
+                    b.Property<int>("Customer_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Customer_Id"));
+
+                    b.Property<string>("Customer_Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Customer_Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Customer_Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Customer_Id");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("APIprojectDoctorPatient.Models.Doctor", b =>
                 {
                     b.Property<int>("Doctor_Id")
@@ -75,30 +119,6 @@ namespace APIprojectDoctorPatient.Migrations
                     b.HasIndex("Doctor_Id");
 
                     b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("APIprojectDoctorPatient.Models.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("APIprojectDoctorPatient.Models.Patient", b =>

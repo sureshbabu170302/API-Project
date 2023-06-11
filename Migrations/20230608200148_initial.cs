@@ -11,6 +11,36 @@ namespace APIprojectDoctorPatient.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    Admin_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Admin_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Admin_Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Admin_Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.Admin_Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Customer_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Customer_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Customer_Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Customer_Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Customer_Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "doctors",
                 columns: table => new
                 {
@@ -27,26 +57,11 @@ namespace APIprojectDoctorPatient.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Patients",
                 columns: table => new
                 {
                     Patient_Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "101, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Patient_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Disease = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -73,10 +88,13 @@ namespace APIprojectDoctorPatient.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Patients");
+                name: "Admins");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Patients");
 
             migrationBuilder.DropTable(
                 name: "doctors");

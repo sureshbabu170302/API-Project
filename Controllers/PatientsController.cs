@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIprojectDoctorPatient.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace APIprojectDoctorPatient.Controllers
 {
-   // [Authorize]
+    //[Authorize(Roles = "Customer,Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class PatientsController : ControllerBase
@@ -133,6 +135,16 @@ namespace APIprojectDoctorPatient.Controllers
             }
 
             return Ok(doctors);
+        }
+
+        private string HashPassword(string password)
+        {
+
+            using (var sha256 = SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(hashedBytes);
+            }
         }
 
 

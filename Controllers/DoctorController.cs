@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIprojectDoctorPatient.Controllers
 {
-    //[Authorize]
+    //[Authorize(Roles = "Customer,Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class DoctorController : ControllerBase
